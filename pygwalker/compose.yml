@@ -1,0 +1,54 @@
+# resources
+#   https://github.com/Kanaries/pygwalker > examples
+#   https://github.com/Kanaries/pygwalker-in-streamlit
+
+# build: docker-compose build --no-cache
+# start: docker-compose up -d
+# open:
+#   http://localhost:8001/pyg_html/test0 最もシンプル
+#   http://localhost:8888 (jupyter) tokenは起動時コンソールに表示される
+#   http://localhost:2718 (marimo)
+#   http://localhost:8501 (streamlit) 色々あり
+# end: docker-compose down
+# remove: docker rmi -f docker-pygwalker-image && docker buildx history rm --all
+
+services:
+  image:
+    build: .
+    command: uvicorn web_server_demo:app --reload --host=0.0.0.0 --port=8001
+    container_name: web_server_demo
+    ports:
+      - 8001:8001
+    volumes:
+      - ./examples/data:/data
+      - ./examples/web_server_demo:/app
+
+  jupyter_demo:
+    image: pygwalker-image
+    command: jupyter lab --ip=0.0.0.0
+    container_name: jupyter_demo
+    ports:
+      - 8888:8888
+    volumes:
+      - ./examples/data:/data
+      - ./examples/jupyter_demo:/app
+
+  marimo_demo:
+    image: pygwalker-image
+    command: marimo run marimo_demo.py --host=0.0.0.0
+    container_name: marimo_demo
+    ports:
+      - 2718:2718
+    volumes:
+      - ./examples/data:/data
+      - ./examples/marimo_demo:/app
+
+  streamlit_demo:
+    image: pygwalker-image
+    command: streamlit run ./streamlit_demo.py
+    container_name: streamlit_demo
+    ports:
+      - 8501:8501
+    volumes:
+      - ./examples/data:/data
+      - ./examples/streamlit_demo:/app

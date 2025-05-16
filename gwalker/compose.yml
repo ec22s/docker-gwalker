@@ -1,0 +1,12 @@
+# build: docker-compose build --no-cache
+# start: docker-compose up -d
+# open: http://localhost:2002
+# end: docker-compose down
+# remove: docker rmi -f docker-gwalker-image && docker buildx history rm --all
+
+services:
+  image:
+    build: .
+    container_name: dev
+    ports:
+      - 2002:2002

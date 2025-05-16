@@ -1,0 +1,74 @@
+# resources
+#   https://github.com/Kanaries/pygwalker > examples
+#   https://github.com/Kanaries/pygwalker-in-streamlit
+#     pygwalker_app.py # NG. zero devision
+#     metrics_demo.py # NG. AttributeError: 'Chart' object has no attribute 'to_html'
+#     twitter_demo.py # NG. TypeError: unhashable type: 'dict'
+
+services:
+  # PyGWalkerがHTML出力され、ブラウザで開けば使える
+  # 単体では今いち. 他に統合したいがJupyterで実行するとipywidgetsがないエラーになる
+  html_demo:
+    image: pygwalker-image
+    command: streamlit run ./html_demo.py
+    container_name: html_demo
+    ports:
+      - 8503:8501
+    volumes:
+      - ./examples/data:/data
+      - ./examples/html_demo:/app
+  # http://localhost:8503
+
+  # communicationの意味やstreamlit_demoとの違いが不明
+  streamlit_comm:
+    image: pygwalker-image
+    command: streamlit run ./streamlit_comm.py
+    container_name: streamlit_comm
+    ports:
+      - 8504:8501
+    volumes:
+      - ./examples/data:/data
+      - ./examples/streamlit_comm:/app
+  # http://localhost:8504
+
+  # 同上
+  pygwalker_comm:
+    image: pygwalker-image
+    command: streamlit run ./pygwalker_comm.py
+    container_name: pygwalker_comm
+    ports:
+      - 8505:8501
+    volumes:
+      - ./examples/data:/data
+      - ./examples/pygwalker_comm:/app
+  # http://localhost:8505
+
+  # gradio
+  # 使う時はDockerfileのimportにgradio加える
+  # まだ動かない (起動するが Attaching to gradio_demo から進まない)
+  gradio_demo:
+    image: pygwalker-image
+    command: python ./gradio_demo.py
+    container_name: gradio_demo
+    ports:
+      - 7860:7860
+    volumes:
+      - ./examples/data:/data
+      - ./examples/gradio_demo:/app
+  # http://localhost:7860
+
+  # Dash
+  # 使う時はDockerfileのimportにdash加える
+  # https://dash.plotly.com/minimal-app は動くがpyg埋め込みはサンプルはNG
+  # dash_dangerously_set_inner_html がdeprecated
+  # 自前構築は大変 https://qiita.com/ckw-1227/items/d753daf614d474484d72
+  dash_demo:
+    image: pygwalker-image
+    command: python dash_demo.py
+    container_name: dash_demo
+    ports:
+      - 8050:8050
+    volumes:
+      - ./examples/dash_demo:/app
+      - ./examples/data:/data
+  # http://localhost:8050
