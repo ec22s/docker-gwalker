@@ -5,7 +5,7 @@ Containers for Kanaries' [Graphic Walker](https://github.com/Kanaries/graphic-wa
 
 - LTタイトル「Tableau から PyGWalker への移行を検討してみた」
 
-- [スライドPDF](https://github.com/user-attachments/files/20266109/20250516_PyGWalker_small.pdf)（6.1MB, 発表後に PyGWalker の画面など追加しました）
+- [スライドPDF](https://ec22s.github.io/docker-gwalker/20250516_PyGWalker_small.pdf)（6.1MB, 発表後に PyGWalker の画面など追加しました）
 
 - LTで再生した短い動画（Tableauで積み上げ棒グラフを作る際に戸惑う様子。スライドPDFに埋め込めないため別掲）
 
