@@ -71,7 +71,7 @@ Containers for Kanaries' [Graphic Walker](https://github.com/Kanaries/graphic-wa
 
    - 起動すると下記画面のように4つのサーバが起動します
 
-     - 詳細は[スライドPDF](https://github.com/user-attachments/files/20266109/20250516_PyGWalker_small.pdf)のp.6以降にあります
+     - 詳細は[スライドPDF](https://ec22s.github.io/docker-gwalker/20250516_PyGWalker_small.pdf)のp.6以降にあります
 
      - Graphic Walker同様、各サーバはホストマシン以外からもアクセスできるのでご注意下さい
 
